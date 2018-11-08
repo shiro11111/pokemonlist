@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { List, Pokemon } from '../pokemon';
+import { List, Pokemon } from '../../pokemon';
 import { Observable } from 'rxjs';
-import { AppState } from '../app.reducers';
+import { AppState } from '../../app.reducers';
 import { Store } from '@ngrx/store';
 import { LoadPokemonList } from './pokemon-list.actions';
 import { PokemonListState } from './pokemon-list.reducers';

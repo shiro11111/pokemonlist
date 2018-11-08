@@ -1,5 +1,5 @@
 import * as PokemonActions from './pokemon-list.actions';
-import {Pokemon} from '../pokemon';
+import {Pokemon} from '../../pokemon';
 import {LoadPokemonListFail} from './pokemon-list.actions';
 
 

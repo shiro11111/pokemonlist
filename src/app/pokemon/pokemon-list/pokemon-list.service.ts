@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {List, Pokemon} from '../pokemon';
+import {List, Pokemon} from '../../pokemon';
 import {Observable} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
 

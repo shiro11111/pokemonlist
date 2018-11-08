@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PokemonListService } from './pokemon-list.service';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { Pokemon } from '../pokemon';
+import { Pokemon } from '../../pokemon';
 import { LoadPokemonListFail, LoadPokemonListSuccess } from './pokemon-list.actions';
 import { of } from 'rxjs';
 

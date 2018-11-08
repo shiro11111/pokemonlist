@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Pokemon} from '../pokemon';
+import {Pokemon} from '../../pokemon';
 import {HttpErrorResponse} from '@angular/common/http';
 
 

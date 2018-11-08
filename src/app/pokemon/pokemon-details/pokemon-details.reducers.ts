@@ -1,4 +1,4 @@
-import { Pokemon } from '../pokemon';
+import { Pokemon } from '../../pokemon';
 import {
   LOAD_POKEMON_DETAILS,
   LOAD_POKEMON_DETAILS_FAIL,
