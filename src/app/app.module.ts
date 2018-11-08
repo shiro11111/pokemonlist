@@ -9,6 +9,10 @@ import {PokemonListEffects} from './pokemon-list/pokemon-list.effects';
 import {PokemonListService} from './pokemon-list/pokemon-list.service';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers } from './app.reducers';
+import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 
 @NgModule({
@@ -19,6 +23,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    [BrowserAnimationsModule],
+    [MatButtonModule, MatCheckboxModule],
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([
