@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { List, Pokemon } from '../../pokemon';
+import { List, Pokemon } from '../../models/pokemon';
 import { Observable } from 'rxjs';
 import { AppState } from '../../app.reducers';
 import { Store } from '@ngrx/store';
-import { LoadPokemonList } from './pokemon-list.actions';
-import { PokemonListState } from './pokemon-list.reducers';
+import { LoadPokemonList } from '../pokemon.actions';
+import { PokemonState } from '../pokemon.reducers';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -21,7 +21,7 @@ export class PokemonListComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new LoadPokemonList());
-    this.pokemon$ = this.store.select('pokemonList').pipe(map((state: PokemonListState) => state && state.list));
+    this.pokemon$ = this.store.select('pokemonState').pipe(map((state: PokemonState) => state && state.list));
   }
 
 }

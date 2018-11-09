@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: '',
     pathMatch: 'full'
-  }
+  },
+  {
+    path: 'beers',
+    loadChildren: './beer/beer.module#BeerModule'
+  },
 ];
 
 @NgModule({

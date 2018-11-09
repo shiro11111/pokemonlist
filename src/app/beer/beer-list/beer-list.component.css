@@ -1,0 +1,8 @@
+ng-container {
+  margin: 10px;
+}
+
+.card {
+  margin-bottom: 15px;
+  background-color: #eee;
+}
