@@ -9,7 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './app.reducers';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatToolbarModule} from '@angular/material';
 import { BeerService } from './beer/beer.service';
 import { BeerEffects } from './beer/beer.effects';
 import { PokemonService } from './pokemon/pokemon.service';
@@ -27,6 +27,9 @@ import { PokemonService } from './pokemon/pokemon.service';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([

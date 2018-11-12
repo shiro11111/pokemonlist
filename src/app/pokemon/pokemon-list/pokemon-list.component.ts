@@ -7,6 +7,7 @@ import {LoadPokemonList} from '../pokemon.actions';
 import {PokemonState} from '../pokemon.reducers';
 import {map} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -27,6 +28,7 @@ export class PokemonListComponent implements OnInit {
     this.store.dispatch(new LoadPokemonList());
     this.list$ = this.store.select('pokemonState').pipe(
       map((state: PokemonState) => state && state.list));
+    this.store.dispatch(new SetToolBarContentAction('My Pokemon List'));
   }
 
   onRowClicked(element: Pokemon): void {

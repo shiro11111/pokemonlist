@@ -7,6 +7,7 @@ import {LoadPokemonDetails, LoadPokemonList} from '../pokemon.actions';
 import {combineLatest, Observable, Subject} from 'rxjs';
 import {Pokemon} from '../../models/pokemon';
 import {PokemonState} from '../pokemon.reducers';
+import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -41,6 +42,7 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
     ).subscribe(([params, list]) => {
       const url = list.filter((item: Pokemon) => item && item.name && item.name === params.name)[0].url;
       this.store.dispatch(new LoadPokemonDetails(url));
+      this.store.dispatch(new SetToolBarContentAction(`${params.name} details`));
     });
   }
 
