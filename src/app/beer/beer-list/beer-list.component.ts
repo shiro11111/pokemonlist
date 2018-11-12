@@ -18,6 +18,7 @@ import { BeerState } from '../beer.reducers';
 export class BeerListComponent implements OnInit {
   beer$: Observable<Item>;
   list$: Observable<Item[]>;
+  displayedColumns = ['number', 'name'];
 
   constructor(private store: Store<AppState>,
               private router: Router,
@@ -38,7 +39,7 @@ export class BeerListComponent implements OnInit {
     );
   }
 
-  navigateToDetails(id: number): void {
+  onRowClicked(id: number): void {
     if (id) {
       this.router.navigate([`details/${id}`], { relativeTo: this.route });
     }

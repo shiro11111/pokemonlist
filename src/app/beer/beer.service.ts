@@ -16,7 +16,7 @@ export class BeerService {
   }
 
   loadBeerDetails(id: number): Observable<Item> {
-    return this.http.get<Item>(` https://api.punkapi.com/v2/beers/${id}`);
+    return this.http.get<Item>(`https://api.punkapi.com/v2/beers/${id}`);
   }
 }
 

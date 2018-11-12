@@ -1,7 +1,25 @@
-<ng-container *ngIf="(list$ | async)">
-  <mat-card class="card" *ngFor="let item of (list$ | async)">
-    <div (click)="navigateToDetails(item?.id)">{{ item?.name }}</div>
-  </mat-card>
-</ng-container>
+<!--<ng-container *ngIf="(list$ | async)">-->
+  <!--<mat-card class="card" *ngFor="let item of (list$ | async)">-->
+    <!--<div (click)="navigateToDetails(item?.id)">{{ item?.name }}</div>-->
+  <!--</mat-card>-->
+<!--</ng-container>-->
 
-<pre>{{list$ | async | json}}</pre>
+<!--<pre>{{list$ | async | json}}</pre>-->
+
+
+<mat-table [dataSource]="(list$ | async)">
+
+  <ng-container matColumnDef="number">
+    <mat-header-cell *matHeaderCellDef> Number</mat-header-cell>
+    <mat-cell *matCellDef="let beer"> {{ (list$ | async)?.indexOf(beer) + 1 }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+    <mat-cell *matCellDef="let beer"> {{beer.name}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row?.id)"></mat-row>
+
+</mat-table>

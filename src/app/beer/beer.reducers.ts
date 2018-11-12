@@ -27,7 +27,7 @@ export function beerReducer(state = initialState, action: BeerActions) {
       return {
         ...state,
         beer: { ...state.beer },
-        list: { ...state.list }
+        list: [ ...state.list ]
       };
     case LOAD_BEERLIST_SUCCESS:
       return {
