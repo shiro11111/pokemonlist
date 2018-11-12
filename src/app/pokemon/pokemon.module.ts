@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {PokemonListComponent} from './pokemon-list/pokemon-list.component';
 import {PokemonDetailsComponent} from './pokemon-details/pokemon-details.component';
-import {MatButtonModule, MatCardModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatTableModule} from '@angular/material';
 import {PokemonRoutingModule} from './pokemon-routing.module';
 
 @NgModule({
@@ -14,7 +14,8 @@ import {PokemonRoutingModule} from './pokemon-routing.module';
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    PokemonRoutingModule
+    PokemonRoutingModule,
+    MatTableModule
   ],
   providers: [
 

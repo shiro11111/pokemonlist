@@ -11,10 +11,12 @@ import { PokemonActions,
 
 export interface PokemonState {
   list: Pokemon[];
+  pokemon: Pokemon;
 }
 
 const initialState: PokemonState = {
-  list: []
+  list: [],
+  pokemon: null
 };
 
 export function pokemonReducer(state = initialState, action: PokemonActions) {

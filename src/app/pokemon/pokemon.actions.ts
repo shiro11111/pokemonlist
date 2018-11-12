@@ -31,7 +31,7 @@ export class LoadPokemonListFail implements Action {
 export class LoadPokemonDetails implements Action {
   readonly type = LOAD_POKEMON_DETAILS;
 
-  constructor(public payload: number) {
+  constructor(public payload: string) {
   }
 }
 
