@@ -44,9 +44,9 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
     this.details$.pipe(
       filter((beer: Item) => !!beer),
       map((beer: Item) => beer.name),
-      first(),
       takeUntil(this.destroyed$)
     ).subscribe((name: string) => {
+      console.log(name);
       this.store.dispatch(new SetToolBarContentAction(`${name} details`));
     });
   }
