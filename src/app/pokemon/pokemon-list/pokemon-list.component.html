@@ -1,4 +1,4 @@
-<mat-table [dataSource]="(list$ | async)">
+<mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
   <ng-container matColumnDef="number">
     <mat-header-cell *matHeaderCellDef> Number</mat-header-cell>
@@ -6,7 +6,7 @@
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
     <mat-cell *matCellDef="let pokemon"> {{pokemon.name}}</mat-cell>
   </ng-container>
 
@@ -16,5 +16,14 @@
 </mat-table>
 
 
+<!--<table matSort (matSortChange)="sortData($event)">-->
+<!--<tr>-->
+<!--<th mat-sort-header="number">Number</th>-->
+  <!--<th mat-sort-header="name">Name</th>-->
+<!--</tr>-->
 
-
+<!--<tr *ngFor="let pokemon of sortedData">-->
+<!--<td>{{pokemon.number}}</td>-->
+  <!--<td>{{pokemon.name}}</td>-->
+<!--</tr>-->
+<!--</table>-->
