@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators';
 import {LoadBeerList} from '../beer.actions';
 import {ActivatedRoute, Router} from '@angular/router';
 import { BeerState } from '../beer.reducers';
+import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 
 @Component({
   selector: 'app-list',
@@ -37,6 +38,7 @@ export class BeerListComponent implements OnInit {
       select('beerState'),
       map((state: BeerState) => state && state.list)
     );
+    this.store.dispatch(new SetToolBarContentAction('My Beer List'));
   }
 
   onRowClicked(id: number): void {

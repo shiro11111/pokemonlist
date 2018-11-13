@@ -15,7 +15,7 @@ import {PokemonRoutingModule} from './pokemon-routing.module';
     MatButtonModule,
     MatCardModule,
     PokemonRoutingModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [
 

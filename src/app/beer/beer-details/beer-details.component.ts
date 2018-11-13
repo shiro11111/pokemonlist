@@ -7,6 +7,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { filter, first, map, takeUntil } from 'rxjs/operators';
 import { LoadBeerDetails } from '../beer.actions';
 import { BeerState } from '../beer.reducers';
+import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 
 @Component({
   selector: 'app-beer-details',
@@ -32,6 +33,7 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
       takeUntil(this.destroyed$)
     ).subscribe((id: number) => {
       this.store.dispatch(new LoadBeerDetails(id));
+
     });
 
     this.details$ = this.store.pipe(
@@ -39,10 +41,17 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
       map((state: BeerState) => state && state.beer)
     );
 
+    this.details$.pipe(
+      filter((beer: Item) => !!beer),
+      map((beer: Item) => beer.name),
+      first(),
+      takeUntil(this.destroyed$)
+    ).subscribe((name: string) => {
+      this.store.dispatch(new SetToolBarContentAction(`${name} details`));
+    });
   }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
   }
-
 }
