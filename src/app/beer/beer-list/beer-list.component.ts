@@ -19,6 +19,7 @@ import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 export class BeerListComponent implements OnInit {
   beer$: Observable<Item>;
   list$: Observable<Item[]>;
+  loader$: Observable<boolean>;
   displayedColumns = ['number', 'name'];
 
   constructor(private store: Store<AppState>,
@@ -36,8 +37,11 @@ export class BeerListComponent implements OnInit {
 
     this.list$ = this.store.pipe(
       select('beerState'),
-      map((state: BeerState) => state && state.list)
+      map((state: BeerState) => state && state.list.data)
     );
+
+    this.loader$ = this.store.select('beerState').pipe(
+      map((state: BeerState) => state && state.list && state.list.loading));
     this.store.dispatch(new SetToolBarContentAction('My Beer List'));
   }
 

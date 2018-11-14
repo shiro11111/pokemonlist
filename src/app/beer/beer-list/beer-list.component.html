@@ -21,3 +21,5 @@
   <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row?.id)"></mat-row>
 
 </mat-table>
+
+<mat-spinner *ngIf="loader$ | async"></mat-spinner>

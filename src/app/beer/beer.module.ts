@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerListComponent } from './beer-list/beer-list.component';
-import {MatButtonModule, MatCardModule, MatTableModule} from '@angular/material';
+import { MatButtonModule, MatCardModule, MatProgressSpinnerModule, MatTableModule } from '@angular/material';
 import { BeerRoutingModule } from './beer-routing.module';
 
 @NgModule({
@@ -15,7 +15,8 @@ import { BeerRoutingModule } from './beer-routing.module';
     MatButtonModule,
     MatCardModule,
     MatTableModule,
-    BeerRoutingModule
+    BeerRoutingModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   exports: [
@@ -23,5 +24,4 @@ import { BeerRoutingModule } from './beer-routing.module';
     BeerDetailsComponent
   ]
 })
-export class BeerModule {
-}
+export class BeerModule {}

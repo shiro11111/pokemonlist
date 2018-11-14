@@ -8,17 +8,20 @@ import {
   LOAD_BEER_DETAILS_SUCCESS,
   LOAD_BEER_DETAILS_FAIL
 } from './beer.actions';
+import { ListState } from '../shared/models/list-state';
 
 
 export interface BeerState {
-  beer: Item;
-  list: Item[];
-
+  beer: ItemState<Item>;
+  list: ListState<Item>;
 }
 
 const initialState: BeerState = {
   beer: null,
-  list: []
+  list: {
+    loading: false,
+    data: []
+  }
 };
 
 export function beerReducer(state = initialState, action: BeerActions) {
@@ -27,17 +30,27 @@ export function beerReducer(state = initialState, action: BeerActions) {
       return {
         ...state,
         beer: { ...state.beer },
-        list: [ ...state.list ]
+        list: {
+          loading: true,
+          data: null
+        }
       };
     case LOAD_BEERLIST_SUCCESS:
       return {
         ...state,
         beer: { ...state.beer },
-        list: action.payload
+        list: {
+          loading: false,
+          data: action.payload
+        }
       };
     case LOAD_BEERLIST_FAIL:
       return {
-        ...state
+        ...state,
+        list: {
+          loading: false,
+          data: null
+        }
       };
     case LOAD_BEER_DETAILS:
       return {
