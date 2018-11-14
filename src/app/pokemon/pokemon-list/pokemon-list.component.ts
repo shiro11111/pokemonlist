@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {List, Pokemon} from '../../models/pokemon';
-import {Observable} from 'rxjs';
-import {AppState} from '../../app.reducers';
-import {Store} from '@ngrx/store';
-import {LoadPokemonList} from '../pokemon.actions';
-import {PokemonState} from '../pokemon.reducers';
-import {map} from 'rxjs/operators';
-import {ActivatedRoute, Router} from '@angular/router';
-import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
+import { Component, OnInit } from '@angular/core';
+import { List, Pokemon } from '../../models/pokemon';
+import { Observable } from 'rxjs';
+import { AppState } from '../../app.reducers';
+import { Store } from '@ngrx/store';
+import { LoadPokemonList } from '../pokemon.actions';
+import { PokemonState } from '../pokemon.reducers';
+import { map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
+import { MatSpinner } from '@angular/material';
+import { ListState } from '../../shared/models/list-state';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,6 +20,7 @@ import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
 export class PokemonListComponent implements OnInit {
   list$: Observable<Pokemon[]>;
   displayedColumns = ['number', 'name'];
+  loader$: Observable<boolean>;
 
   constructor(private store: Store<AppState>,
               private router: Router,
@@ -27,12 +30,16 @@ export class PokemonListComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadPokemonList());
     this.list$ = this.store.select('pokemonState').pipe(
-      map((state: PokemonState) => state && state.list));
+      map((state: PokemonState) => state && state.list && state.list.data));
+
+    this.loader$ = this.store.select('pokemonState').pipe(
+      map((state: PokemonState) => state && state.list && state.list.loading));
+
     this.store.dispatch(new SetToolBarContentAction('My Pokemon List'));
   }
 
   onRowClicked(element: Pokemon): void {
     console.log(element);
-    this.router.navigate(['details', element.name], {relativeTo: this.route});
+    this.router.navigate(['details', element.name], { relativeTo: this.route });
   }
 }

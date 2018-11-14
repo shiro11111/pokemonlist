@@ -26,7 +26,8 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.pokemon$ = this.store.select('pokemonState').pipe(
-      map((state: PokemonState) => state && state.list));
+      map((state: PokemonState) => state && state.list.data));
+
     this.details$ = this.store.select('pokemonState').pipe(
       map((state: PokemonState) => state && state.pokemon));
 

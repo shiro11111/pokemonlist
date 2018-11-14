@@ -15,7 +15,6 @@ export interface AppState {
 
 
 export const reducers: ActionReducerMap<AppState> = {
-  // pokemonState: fromPokemonState.pokemonListReducer,
   beerState: beerReducer,
   pokemonState: pokemonReducer,
   toolBarState: toolbarReducer

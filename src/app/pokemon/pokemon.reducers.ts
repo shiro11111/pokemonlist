@@ -8,14 +8,18 @@ import { PokemonActions,
   LOAD_POKEMON_DETAILS,
   LOAD_POKEMON_DETAILS_SUCCESS,
   LOAD_POKEMON_DETAILS_FAIL} from './pokemon.actions';
+import { ListState } from '../shared/models/list-state';
 
 export interface PokemonState {
-  list: Pokemon[];
+  list: ListState<Pokemon>;
   pokemon: Pokemon;
 }
 
 const initialState: PokemonState = {
-  list: [],
+  list: {
+    loading: false,
+    data: []
+  },
   pokemon: null
 };
 
@@ -23,16 +27,27 @@ export function pokemonReducer(state = initialState, action: PokemonActions) {
   switch (action.type) {
     case LOAD_POKEMON_LIST:
       return {
-        ...state
+        ...state,
+        list: {
+          loading: true,
+          data: null
+        }
       };
     case LOAD_POKEMON_LIST_SUCCESS:
       return {
         ...state,
-        list: action.payload
+        list: {
+          loading: false,
+          data: action.payload
+        }
       };
     case LOAD_POKEMON_LIST_FAIL:
       return {
-        ...state
+        ...state,
+        list: {
+          loading: false,
+          data: null
+        }
       };
     case LOAD_POKEMON_DETAILS:
       return {
