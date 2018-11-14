@@ -9,6 +9,7 @@ import {
   LOAD_BEER_DETAILS_FAIL
 } from './beer.actions';
 import { ListState } from '../shared/models/list-state';
+import { ItemState } from '../shared/models/item-state';
 
 
 export interface BeerState {
