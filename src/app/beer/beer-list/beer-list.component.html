@@ -5,6 +5,14 @@
 <!--</ng-container>-->
 
 <!--<pre>{{list$ | async | json}}</pre>-->
+
+
+<form class="example-form beer-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Search beer">
+  </mat-form-field>
+
+
 <mat-table [dataSource]="(list$ | async)">
 
   <ng-container matColumnDef="number">

@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 
-
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',

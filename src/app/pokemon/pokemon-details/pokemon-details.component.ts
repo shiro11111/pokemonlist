@@ -1,13 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AppState} from '../../app.reducers';
-import {Store} from '@ngrx/store';
-import {ActivatedRoute, Params} from '@angular/router';
-import {filter, first, map, takeUntil, withLatestFrom} from 'rxjs/operators';
-import {LoadPokemonDetails, LoadPokemonList} from '../pokemon.actions';
-import {combineLatest, Observable, Subject} from 'rxjs';
-import {Pokemon} from '../../models/pokemon';
-import {PokemonState} from '../pokemon.reducers';
-import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AppState } from '../../app.reducers';
+import { Store } from '@ngrx/store';
+import { ActivatedRoute, Params } from '@angular/router';
+import { filter, first, map, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { LoadPokemonDetails, LoadPokemonList } from '../pokemon.actions';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import { Pokemon } from '../../models/pokemon';
+import { PokemonState } from '../pokemon.reducers';
+import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -54,5 +54,4 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed$.next(true);
   }
-
 }

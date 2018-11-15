@@ -1,4 +1,13 @@
+
+
+<form class="example-form pokemon-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Search pokemon">
+  </mat-form-field>
+</form>
+
 <mat-table [dataSource]="(list$ | async)">
+
 
   <ng-container matColumnDef="number">
     <mat-header-cell *matHeaderCellDef> Number</mat-header-cell>
@@ -14,7 +23,6 @@
   <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
 
 </mat-table>
-
 
 <mat-spinner *ngIf="loader$ | async"></mat-spinner>
 

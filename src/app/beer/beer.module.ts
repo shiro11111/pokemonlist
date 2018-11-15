@@ -4,6 +4,7 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerListComponent } from './beer-list/beer-list.component';
 import { MatButtonModule, MatCardModule, MatProgressSpinnerModule, MatTableModule } from '@angular/material';
 import { BeerRoutingModule } from './beer-routing.module';
+import { MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { BeerRoutingModule } from './beer-routing.module';
     MatButtonModule,
     MatCardModule,
     MatTableModule,
+    MatInputModule,
     BeerRoutingModule,
     MatProgressSpinnerModule,
   ],

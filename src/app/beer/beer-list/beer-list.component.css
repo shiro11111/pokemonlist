@@ -6,3 +6,7 @@ ng-container {
   margin-bottom: 15px;
   background-color: #eee;
 }
+
+.beer-form {
+  margin-top: 15px;
+}
