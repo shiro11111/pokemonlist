@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { List, Pokemon } from '../../models/pokemon';
+import { Pokemon } from '../../models/pokemon';
 import { Observable } from 'rxjs';
 import { AppState } from '../../app.reducers';
 import { Store } from '@ngrx/store';
@@ -8,8 +8,7 @@ import { PokemonState } from '../pokemon.reducers';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
-import { MatSpinner } from '@angular/material';
-import { ListState } from '../../shared/models/list-state';
+
 
 @Component({
   selector: 'app-pokemon-list',
@@ -39,7 +38,8 @@ export class PokemonListComponent implements OnInit {
   }
 
   onRowClicked(element: Pokemon): void {
-    console.log(element);
+    // console.log(element);
     this.router.navigate(['details', element.name], { relativeTo: this.route });
   }
 }
+
