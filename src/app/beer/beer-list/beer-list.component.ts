@@ -32,7 +32,7 @@ export class BeerListComponent implements OnInit {
 
     this.beer$ = this.store.pipe(
       select('beerState'),
-      map((state: BeerState) => state && state.beer)
+      map((state: BeerState) => state && state.beer && state.beer.data)
     );
 
     this.list$ = this.store.pipe(

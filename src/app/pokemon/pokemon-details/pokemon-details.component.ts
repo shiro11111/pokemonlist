@@ -17,6 +17,7 @@ import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
 export class PokemonDetailsComponent implements OnInit, OnDestroy {
   pokemon$: Observable<Pokemon[]>;
   details$: Observable<Pokemon>;
+  loader$: Observable<boolean>;
 
   private destroyed$: Subject<boolean> = new Subject();
 
@@ -29,7 +30,10 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
       map((state: PokemonState) => state && state.list.data));
 
     this.details$ = this.store.select('pokemonState').pipe(
-      map((state: PokemonState) => state && state.pokemon));
+      map((state: PokemonState) => state && state.pokemon && state.pokemon.data));
+
+    this.loader$ = this.store.select('pokemonState').pipe(
+      map((state: PokemonState) => state && state.pokemon && state.pokemon.loading));
 
     this.store.dispatch(new LoadPokemonList());
 

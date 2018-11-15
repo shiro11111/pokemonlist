@@ -11,7 +11,6 @@ import {
 import { ListState } from '../shared/models/list-state';
 import { ItemState } from '../shared/models/item-state';
 
-
 export interface BeerState {
   beer: ItemState<Item>;
   list: ListState<Item>;
@@ -56,15 +55,24 @@ export function beerReducer(state = initialState, action: BeerActions) {
     case LOAD_BEER_DETAILS:
       return {
         ...state,
+        beer: {
+          loading: true
+        }
       };
     case LOAD_BEER_DETAILS_SUCCESS:
       return {
         ...state,
-        beer: action.payload as Item
+        beer: {
+          loading: false,
+          data: action.payload as Item
+        }
       };
     case LOAD_BEER_DETAILS_FAIL:
       return {
         ...state,
+        beer: {
+          loading: false
+        }
       };
     default:
       return state;

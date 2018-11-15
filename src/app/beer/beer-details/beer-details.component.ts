@@ -17,6 +17,7 @@ import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 export class BeerDetailsComponent implements OnInit, OnDestroy {
 
   details$: Observable<Item>;
+  loader$: Observable<boolean>;
 
   private destroyed$: Subject<boolean> = new Subject();
 
@@ -38,7 +39,7 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
 
     this.details$ = this.store.pipe(
       select('beerState'),
-      map((state: BeerState) => state && state.beer)
+      map((state: BeerState) => state && state.beer && state.beer.data)
     );
 
     this.details$.pipe(
@@ -49,6 +50,9 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
       console.log(name);
       this.store.dispatch(new SetToolBarContentAction(`${name} details`));
     });
+
+    this.loader$ = this.store.select('beerState').pipe(
+      map((state: BeerState) => state && state.beer && state.beer.loading));
   }
 
   ngOnDestroy(): void {
