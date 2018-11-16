@@ -1,15 +1,15 @@
-
-import {Component, OnInit} from '@angular/core';
-import {Item} from '../../models/item';
-import {Observable} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../app.reducers';
-import {select} from '@ngrx/store';
-import {map} from 'rxjs/operators';
-import {LoadBeerList} from '../beer.actions';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Item } from '../../models/item';
+import { combineLatest, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.reducers';
+import { select } from '@ngrx/store';
+import { filter, map, startWith } from 'rxjs/operators';
+import { LoadBeerList } from '../beer.actions';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BeerState } from '../beer.reducers';
 import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -19,26 +19,47 @@ import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 export class BeerListComponent implements OnInit {
   beer$: Observable<Item>;
   list$: Observable<Item[]>;
+  filteredList$: Observable<Item[]>;
   loader$: Observable<boolean>;
+  form: FormGroup;
   displayedColumns = ['number', 'name'];
 
   constructor(private store: Store<AppState>,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.store.dispatch(new LoadBeerList());
+
+    this.createForm();
+
+    this.list$ = this.store.pipe(
+      select('beerState'),
+      map((state: BeerState) => state && state.list.data)
+    );
+
+    this.filteredList$ = combineLatest(
+      this.form.get('search').valueChanges,
+      this.list$
+    ).pipe(
+      filter(([searchValue, list]) => !!(searchValue && list)),
+      map(([searchValue, list]) => {
+        console.log(searchValue);
+        if (!!list && searchValue === '') {
+          return list;
+        } else {
+          return list.filter((listItem: Item) => listItem.name === searchValue);
+        }
+      })
+    );
 
     this.beer$ = this.store.pipe(
       select('beerState'),
       map((state: BeerState) => state && state.beer && state.beer.data)
     );
 
-    this.list$ = this.store.pipe(
-      select('beerState'),
-      map((state: BeerState) => state && state.list.data)
-    );
 
     this.loader$ = this.store.select('beerState').pipe(
       map((state: BeerState) => state && state.list && state.list.loading));
@@ -49,6 +70,12 @@ export class BeerListComponent implements OnInit {
     if (id) {
       this.router.navigate([`details/${id}`], { relativeTo: this.route });
     }
+  }
+
+  private createForm(): void {
+    this.form = this.fb.group({
+      search: null
+    });
   }
 
 }

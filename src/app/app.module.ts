@@ -14,6 +14,7 @@ import { BeerService } from './beer/beer.service';
 import { BeerEffects } from './beer/beer.effects';
 import { PokemonService } from './pokemon/pokemon.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -32,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([

@@ -7,13 +7,20 @@
 <!--<pre>{{list$ | async | json}}</pre>-->
 
 
-<form class="example-form beer-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Search beer">
+<!--<form class="example-form beer-form">-->
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="Search beer">-->
+  <!--</mat-form-field>-->
+
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Search:</mat-label>
+    <input matInput put type="text" formControlName="search">
   </mat-form-field>
+</form>
 
 
-<mat-table [dataSource]="(list$ | async)">
+<mat-table [dataSource]="(filteredList$ | async)">
 
   <ng-container matColumnDef="number">
     <mat-header-cell *matHeaderCellDef> Number</mat-header-cell>

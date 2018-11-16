@@ -11,6 +11,7 @@ export const LOAD_BEER_DETAILS = 'LOAD_BEER_DETAILS';
 export const LOAD_BEER_DETAILS_SUCCESS = 'LOAD_BEER_DETAILS_SUCCESS';
 export const LOAD_BEER_DETAILS_FAIL = 'LOAD_BEER_DETAILS_FAIL';
 
+
 export class LoadBeerList implements Action {
   readonly type = 'LOAD_BEERLIST';
 }
