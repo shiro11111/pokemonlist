@@ -6,7 +6,15 @@
   <!--</mat-form-field>-->
 <!--</form>-->
 
-<mat-table [dataSource]="(list$ | async)">
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Search:</mat-label>
+    <input matInput put type="text" formControlName="search">
+  </mat-form-field>
+</form>
+
+
+<mat-table [dataSource]="(filteredList$ | async)">
 
 
   <ng-container matColumnDef="number">

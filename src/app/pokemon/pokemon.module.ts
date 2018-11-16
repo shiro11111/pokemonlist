@@ -4,11 +4,12 @@ import {PokemonListComponent} from './pokemon-list/pokemon-list.component';
 import {PokemonDetailsComponent} from './pokemon-details/pokemon-details.component';
 import {
   MatButtonModule,
-  MatCardModule, MatInputModule,
+  MatCardModule, MatFormFieldModule, MatInputModule,
   MatProgressSpinnerModule,
   MatTableModule
 } from '@angular/material';
 import {PokemonRoutingModule} from './pokemon-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +18,8 @@ import {PokemonRoutingModule} from './pokemon-routing.module';
     PokemonDetailsComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     MatButtonModule,
     MatCardModule,
@@ -24,6 +27,7 @@ import {PokemonRoutingModule} from './pokemon-routing.module';
     MatTableModule,
     MatProgressSpinnerModule,
     MatInputModule,
+    MatFormFieldModule
   ],
   providers: [
 

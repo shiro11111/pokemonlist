@@ -41,10 +41,10 @@ export class BeerListComponent implements OnInit {
     );
 
     this.filteredList$ = combineLatest(
-      this.form.get('search').valueChanges,
+      this.form.get('search').valueChanges.pipe(startWith('')),
       this.list$
     ).pipe(
-      filter(([searchValue, list]) => !!(searchValue && list)),
+      filter(([searchValue, list]) => !!(list)),
       map(([searchValue, list]) => {
         console.log(searchValue);
         if (!!list && searchValue === '') {
