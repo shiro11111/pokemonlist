@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../../models/pokemon';
-import { combineLatest, Observable } from 'rxjs';
-import { AppState } from '../../app.reducers';
-import { Store } from '@ngrx/store';
-import { LoadPokemonList } from '../pokemon.actions';
-import { PokemonState } from '../pokemon.reducers';
-import { filter, map, startWith } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Pokemon} from '../../models/pokemon';
+import {combineLatest, Observable} from 'rxjs';
+import {AppState} from '../../app.reducers';
+import {Store} from '@ngrx/store';
+import {LoadPokemonList} from '../pokemon.actions';
+import {PokemonState} from '../pokemon.reducers';
+import {filter, map, startWith} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
+import {FormGroup, FormBuilder} from '@angular/forms';
 
 
 @Component({
@@ -51,11 +51,11 @@ export class PokemonListComponent implements OnInit {
     ).pipe(
       filter(([searchValue, list]) => !!(list)),
       map(([searchValue, list]) => {
-        console.log(searchValue);
+        // console.log(searchValue);
         if (!!list && searchValue === '') {
           return list;
         } else {
-          return list.filter((listPokemon: Pokemon) => listPokemon.name === searchValue);
+          return list.filter((listPokemon: Pokemon) => listPokemon.name.includes(searchValue));
         }
       })
     );
@@ -63,7 +63,11 @@ export class PokemonListComponent implements OnInit {
 
   onRowClicked(element: Pokemon): void {
     // console.log(element);
-    this.router.navigate(['details', element.name], { relativeTo: this.route });
+    this.router.navigate(['details', element.name], {relativeTo: this.route});
+  }
+
+  createForm(): void {
+    this.form = this.fb.group({search: null});
   }
 }
 
