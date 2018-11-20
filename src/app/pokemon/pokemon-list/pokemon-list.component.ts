@@ -8,7 +8,7 @@ import {PokemonState} from '../pokemon.reducers';
 import {filter, map, startWith} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 
 @Component({
@@ -67,7 +67,13 @@ export class PokemonListComponent implements OnInit {
   }
 
   createForm(): void {
-    this.form = this.fb.group({search: null});
+    this.form = this.fb.group({
+      search: this.fb.control(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(new RegExp('^[a-zA-Z]+$'))
+      ])
+    });
   }
 }
 

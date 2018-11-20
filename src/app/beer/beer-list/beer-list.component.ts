@@ -50,7 +50,7 @@ export class BeerListComponent implements OnInit {
         if (!!list && searchValue === '') {
           return list;
         } else {
-          return list.filter((listItem: Item) => listItem.name === searchValue);
+          return list.filter((listItem: Item) => listItem.name.includes(searchValue));
         }
       })
     );

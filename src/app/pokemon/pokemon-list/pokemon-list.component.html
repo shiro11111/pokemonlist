@@ -13,6 +13,16 @@
   </mat-form-field>
 </form>
 
+<div *ngIf="form.get('search').errors?.minlength">
+  Input too short!
+</div>
+<div *ngIf="form.get('search').errors?.pattern">
+  Only letters allowed!
+</div>
+<div *ngIf="form.get('search').errors?.required && form.touched">
+  You have to write sth!
+</div>
+
 
 <mat-table [dataSource]="(filteredList$ | async)">
 
