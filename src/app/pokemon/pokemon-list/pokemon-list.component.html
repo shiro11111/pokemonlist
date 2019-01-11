@@ -1,15 +1,8 @@
 
-
-<!--<form class="example-form pokemon-form">-->
-  <!--<mat-form-field class="example-full-width">-->
-    <!--<input matInput placeholder="Search pokemon">-->
-  <!--</mat-form-field>-->
-<!--</form>-->
-
 <form [formGroup]="form">
   <mat-form-field>
     <mat-label>Search:</mat-label>
-    <input matInput put type="text" formControlName="search">
+    <input matInput type="text" formControlName="search">
   </mat-form-field>
 </form>
 
@@ -22,6 +15,19 @@
 <div *ngIf="form.get('search').errors?.required && form.touched">
   Please enter a pokemon!
 </div>
+
+
+<!--<form [formGroup]="form">-->
+  <!--<mat-form-field>-->
+    <!--<mat-label>Imię</mat-label>-->
+    <!--<input matInput type="text" formControlName="imie">-->
+  <!--</mat-form-field>-->
+  <!--<br>-->
+  <!--<mat-form-field>-->
+  <!--<mat-label>PESEL</mat-label>-->
+  <!--<input matInput type="text" formControlName="pesel">-->
+  <!--</mat-form-field>-->
+<!--</form>-->
 
 
 <mat-table [dataSource]="(filteredList$ | async)">

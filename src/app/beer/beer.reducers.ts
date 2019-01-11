@@ -78,3 +78,9 @@ export function beerReducer(state = initialState, action: BeerActions) {
       return state;
   }
 }
+
+
+export const getBeerListState = (state: BeerState) => state.list;
+
+export const getBeerDetailsState = (state: BeerState) => state.beer;
+

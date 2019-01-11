@@ -18,3 +18,7 @@ export const reducers: ActionReducerMap<AppState> = {
   toolBarState: toolbarReducer
 };
 
+export const getBeerState = (state: AppState) => state.beerState;
+
+export const getPokemonState = (state: AppState) => state.pokemonState;
+

@@ -76,3 +76,6 @@ export function pokemonReducer(state = initialState, action: PokemonActions) {
       return state;
   }
 }
+
+export const getPokemonListState = (state: PokemonState) => state.list;
+export const getPokemonDetailsState = (state: PokemonState) => state.pokemon;

@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
 import {combineLatest, Observable} from 'rxjs';
 import {AppState} from '../../app.reducers';
-import {Store} from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import {LoadPokemonList} from '../pokemon.actions';
 import {PokemonState} from '../pokemon.reducers';
 import {filter, map, startWith} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { pokemonListSelector, pokemonNamesSelector } from '../pokemon.selectors';
 
 
 @Component({
@@ -34,6 +35,14 @@ export class PokemonListComponent implements OnInit {
 
 
     this.store.dispatch(new LoadPokemonList());
+
+    this.store.pipe(select(pokemonListSelector)).subscribe(data => {
+      console.log(data);
+    });
+
+    this.store.pipe(select(pokemonNamesSelector)).subscribe(data => {
+      console.log(data);
+    });
 
     this.createForm();
 

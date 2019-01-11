@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BeerState } from '../beer.reducers';
 import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { beerIbuNumber, beerListSelector, beerNamesSelector, getAllBeersState, getBeerIds } from '../beer.selectors';
 
 @Component({
   selector: 'app-list',
@@ -32,6 +33,22 @@ export class BeerListComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new LoadBeerList());
+
+    this.store.pipe(select(beerListSelector)).subscribe(data => {
+      console.log('state', data);
+    });
+
+    this.store.pipe(select(beerNamesSelector)).subscribe(data => {
+      console.log('beers names', data);
+    });
+
+    this.store.pipe(select(getBeerIds)).subscribe(data => {
+      console.log(data);
+    });
+
+    this.store.pipe(select(beerIbuNumber)).subscribe(data => {
+      console.log('ibu > 50', data);
+    });
 
     this.createForm();
 
@@ -60,7 +77,6 @@ export class BeerListComponent implements OnInit {
       map((state: BeerState) => state && state.beer && state.beer.data)
     );
 
-
     this.loader$ = this.store.select('beerState').pipe(
       map((state: BeerState) => state && state.list && state.list.loading));
     this.store.dispatch(new SetToolBarContentAction('My Beer List'));
@@ -77,5 +93,4 @@ export class BeerListComponent implements OnInit {
       search: null
     });
   }
-
 }
