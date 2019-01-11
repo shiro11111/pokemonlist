@@ -8,12 +8,19 @@ export const getAllPokemonsState = createSelector(getPokemonState, getPokemonLis
 
 export const pokemonListSelector = createSelector(
   getAllPokemonsState,
-  (state: ListState<Pokemon>) => state && state.data
+  (state: ListState<Pokemon>) => state && state.data as Pokemon[]
 );
 
 export const pokemonNamesSelector = createSelector(
   getAllPokemonsState,
   (state: ListState<Pokemon>) => state && state.data && state.data.map((pokemon: Pokemon) => pokemon && pokemon.name));
+
+export const pokemonCount = createSelector(
+  pokemonListSelector,
+  (state: Pokemon[]) => state && state.length
+);
+
+
 
 
 

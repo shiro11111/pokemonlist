@@ -9,7 +9,7 @@ import {filter, map, startWith} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SetToolBarContentAction} from '../../toolbar/toolbar.actions';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { pokemonListSelector, pokemonNamesSelector } from '../pokemon.selectors';
+import { pokemonCount, pokemonListSelector, pokemonNamesSelector } from '../pokemon.selectors';
 
 
 @Component({
@@ -41,6 +41,10 @@ export class PokemonListComponent implements OnInit {
     });
 
     this.store.pipe(select(pokemonNamesSelector)).subscribe(data => {
+      console.log(data);
+    });
+
+    this.store.pipe(select(pokemonCount)).subscribe(data => {
       console.log(data);
     });
 

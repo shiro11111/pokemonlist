@@ -10,7 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BeerState } from '../beer.reducers';
 import { SetToolBarContentAction } from '../../toolbar/toolbar.actions';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { beerIbuNumber, beerListSelector, beerNamesSelector, getAllBeersState, getBeerIds } from '../beer.selectors';
+import {
+  beerIbuNumber,
+  beerListSelector,
+  beerNamesSelector,
+  beerTagline,
+  getAllBeersState,
+  getBeerIds
+} from '../beer.selectors';
 
 @Component({
   selector: 'app-list',
@@ -48,6 +55,10 @@ export class BeerListComponent implements OnInit {
 
     this.store.pipe(select(beerIbuNumber)).subscribe(data => {
       console.log('ibu > 50', data);
+    });
+
+    this.store.pipe(select(beerTagline)).subscribe(data => {
+      console.log(data);
     });
 
     this.createForm();

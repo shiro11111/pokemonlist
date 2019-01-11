@@ -9,8 +9,7 @@ export const getAllBeersState = createSelector(getBeerState, getBeerListState);
 
 export const beerListSelector = createSelector(
   getAllBeersState,
-  (state: ListState<Item>) => state && state.data
-);
+  (state: ListState<Item>) => state && state.data as Item[]);
 
 export const beerNamesSelector = createSelector(
   getAllBeersState,
@@ -25,5 +24,7 @@ export const beerIbuNumber = createSelector(
   getAllBeersState,
   (state: ListState<Item>) => state && state.data && state.data.filter((beer: Item) => beer && beer.ibu > 50));
 
-
+export const beerTagline = createSelector(
+  beerListSelector,
+  (state: Item[]) => state && state.filter((beer: Item) => beer && beer.tagline));
 
